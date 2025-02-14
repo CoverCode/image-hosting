@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>玫瑰花</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      position: relative;
+    }
+    .rose {
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      animation: fadeIn 2s ease-in-out;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .text {
+      color: #fff;
+      font-size: 24px;
+      margin-top: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      animation: fadeIn 2s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .petal {
+      position: absolute;
+      top: -50px;
+      pointer-events: none;
+      z-index: 2;
+      user-select: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="rose.gif" alt="玫瑰花" class="rose">
+    <div class="text">鸭鸭专属花花</div>
+  </div>
+  
+  <script>
+    // 飘落玫瑰花瓣
+    const petalCount = 50; // 花瓣数量
+    const container = document.querySelector('.container');
+    for(let i = 0; i < petalCount; i++){
+      const petal = document.createElement('div');
+      petal.className = 'petal';
+      petal.innerHTML = '🌹';
+      const size = Math.random() * 20 + 10;
+      petal.style.fontSize = size + 'px';
+      petal.style.left = Math.random() * 100 + '%';
+      const duration = Math.random() * 5 + 5;
+      petal.style.animationDuration = duration + 's';
+      const delay = Math.random() * 5;
+      petal.style.animationDelay = delay + 's';
+      container.appendChild(petal);
+    }
+  </script>
+</body>
+</html>
